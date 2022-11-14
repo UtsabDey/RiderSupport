@@ -9,22 +9,22 @@
                 <div class="card shadow mt-4">
                     <div class="card-header">
                         <h4>
-                            Add Users
+                            Edit Users
                             <a href="{{ route('users.index') }}" class="btn btn-primary btn-sm float-end"><i
                                     class="fas fa-clipboard-list me-2"></i>User List</a>
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('users.store') }}" method="post">
+                        <form action="{{ route('users.update', $user->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-7">
                                         <div class="mb-3">
                                             <label for="" class="form-label required">Name<span
                                                     style="color: red">*</span></label>
-                                            <input type="text" class="form-control" id="name" name="name"
-                                                aria-describedby="" placeholder="Name" required>
+                                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}"  placeholder="Name" required>
                                             @error('name')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -35,10 +35,9 @@
                                             <label for="" class="form-label">Role<span
                                                     style="color: red">*</span></label>
                                             <select name="role" class="form-control form-select" id="" required>
-                                                <option value="">Select User Role</option>
-                                                <option value="0">Admin</option>
-                                                <option value="1">Agent</option>
-                                                <option value="2">Q/A</option>
+                                                <option value="0" {{ ($user->role == 0) ? 'selected' : ''}} >Admin</option>
+                                                <option value="1" {{ ($user->role == 1) ? 'selected' : ''}}>Agent</option>
+                                                <option value="2" {{ ($user->role == 1) ? 'selected' : ''}}>Q/A</option>
                                             </select>
                                             @error('role')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -54,7 +53,7 @@
                                             <label for="exampleInputEmail1" class="form-label">Email address<span
                                                     style="color: red">*</span></label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                aria-describedby="emailHelp" placeholder="Email Address" required>
+                                            value="{{ $user->email }}" placeholder="Email Address" required>
                                             @error('email')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
@@ -64,7 +63,7 @@
                                         <div class="mb-3">
                                             <label for="" class="form-label">Phone</label>
                                             <input type="text" class="form-control" id="phone" name="phone"
-                                                aria-describedby="" placeholder="Phone Number"
+                                            value="{{ $user->phone }}" placeholder="Phone Number"
                                                 pattern="[0]{1}[1]{1}[0-9]{9}">
                                             @error('phone')
                                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -75,25 +74,10 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
-                                <textarea name="address" id="address" class="form-control" rows="2"></textarea>
+                                <textarea name="address" id="address" class="form-control" rows="2">{{ $user->address }}</textarea>
                                 @error('address')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password<span
-                                        style="color: red">*</span></label>
-                                <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Password" required>
-                                @error('password')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleInputPassword2" class="form-label">Confirm Password<span
-                                        style="color: red">*</span></label>
-                                <input type="password" class="form-control" id="confirm_password" name="confirm_password"
-                                    placeholder="Confirm Password" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary btn-block">Submit</button>

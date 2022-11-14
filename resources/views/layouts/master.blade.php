@@ -18,6 +18,9 @@
 
     {{-- Font Awesome --}}
     <script src="{{ asset('js/fontawesome.all.js') }}"></script>
+
+    {{-- Toastr CSS --}}
+    <link rel="stylesheet" href="{{ asset('toastr/toastr.min.css') }}">
 </head>
 
 <body>
@@ -37,15 +40,52 @@
 
     {{-- jQuery --}}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
     {{-- DataTable CSS --}}
     <script src="{{ asset('js/datatables.min.js') }}"></script>
     <script src="{{ asset('js/dataTables.bootstrap5.min.js') }}"></script>
+
+    {{-- Toastr JS --}}
+    <script src="{{ asset('toastr/toastr.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
+    </script>
+
+    <script>
+        @if (Session::has('success'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (Session::has('error'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.error("{{ session('error') }}");
+        @endif
+        @if (Session::has('info'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.info("{{ session('info') }}");
+        @endif
+        @if (Session::has('warning'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.warning("{{ session('warning') }}");
+        @endif
     </script>
 </body>
 

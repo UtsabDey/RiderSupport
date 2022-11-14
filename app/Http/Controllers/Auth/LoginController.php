@@ -32,9 +32,9 @@ class LoginController extends Controller
     public function authenticated()
     {
         if (Auth::user()->role == '0') { // 1 = Admin & 0 = User
-            return redirect('/admin')->with('success', 'Welcome to Admin Panel');
+            return redirect('/admin')->with('success', 'Welcome to Rider Support Site');
         } else if (Auth::user()->role_as == '1') {
-            return redirect('/home')->with('success', 'Welcome to Laravel BlogSite');
+            return redirect('/home')->with('success', 'Welcome to Rider Support Site');
         } else {
             return redirect('/login')->with('warning', 'Please Login First!');
         }
