@@ -76,7 +76,8 @@ class ToolsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['tool'] = Tool::find($id);
+        return view('Admin.Tools.edit', $data);
     }
 
     /**
@@ -88,7 +89,24 @@ class ToolsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'link' => 'nullable',
+        ]);
+
+        if ($validate->fails()) {
+            return back()->withErrors($validate)->withInput();
+        }
+
+        $tool = Tool::find($id);
+        $tool->name = $request->name;
+        $tool->link = $request->link;
+
+        if ($tool->isDirty()) {
+            $tool->update();
+            return redirect()->route('tools.index')->with('success', 'Updated Successfully!');
+        }
+        return redirect()->route('tools.index')->with('error', 'Nothing Changed!');
     }
 
     /**
@@ -99,6 +117,7 @@ class ToolsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tool::find($id)->delete();
+        return redirect()->back()->with('warning', 'Deleted Successfully');
     }
 }

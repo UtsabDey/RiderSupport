@@ -10,7 +10,8 @@
                     <div class="card-header">
                         <h4>
                             View Tools
-                            <a href="{{ route('tools.create') }}" class="btn btn-primary btn-sm float-end"><i class="fa-solid fa-circle-plus me-2 fa-lg"></i>Add Tools</a>
+                            <a href="{{ route('tools.create') }}" class="btn btn-primary btn-sm float-end"><i
+                                    class="fa-solid fa-circle-plus me-2 fa-lg"></i>Add Tools</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -24,7 +25,30 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                @foreach ($tools as $key => $tool)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $tool->name }}</td>
+                                        <td>
+                                            <a href="{{ $tool->link }}" target="_blank" rel="noopener noreferrer">Go to
+                                                {{ $tool->name }}</a>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('tools.edit', $tool->id) }}"
+                                                    class="btn btn-info btn-sm me-2"><i
+                                                        class="fas fa-user-edit me-1"></i>Edit</a>
+                                                <form action="{{ route('tools.destroy', $tool->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm btn-danger"
+                                                        onclick="return confirm('Are you sure you want to delete this item?')"><i
+                                                            class="fas fa-trash me-1"></i>Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

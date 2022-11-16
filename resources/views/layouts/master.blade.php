@@ -53,7 +53,14 @@
 
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                "processing": true,
+                "pageLength": 5,
+                "lengthMenu": [
+                    [5, 10, 25, 50, -1],
+                    [5, 10, 25, 50, "All"]
+                ]
+            });
         });
     </script>
 
