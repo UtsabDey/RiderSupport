@@ -5,7 +5,7 @@
             <div>
                 Developed by:
                 &nbsp;
-                <a href="https://github.com/UtsabDey">Utsab Dey</a>
+                <a href="https://github.com/UtsabDey" target="blank">Utsab Dey</a>
             </div>
         </div>
     </div>

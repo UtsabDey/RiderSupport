@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('isAdmin');
+    }
+    
     public function index()
     {
         $data['users'] = User::all();

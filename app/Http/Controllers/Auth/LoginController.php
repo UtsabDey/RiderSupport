@@ -31,10 +31,12 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-        if (Auth::user()->role == '0') { // 1 = Admin & 0 = User
+        if (Auth::user()->role == '0') { // 0 = Admin & 1 = Agent & 2 = Q/A
             return redirect('/admin')->with('success', 'Welcome to Rider Support Site');
         } else if (Auth::user()->role_as == '1') {
-            return redirect('/home')->with('success', 'Welcome to Rider Support Site');
+            return redirect('/admin')->with('success', 'Login Successfully');
+        }else if (Auth::user()->role_as == '2') {
+            return redirect('/admin')->with('success', 'Welcome to Rider Support Site');
         } else {
             return redirect('/login')->with('warning', 'Please Login First!');
         }

@@ -33,7 +33,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td class="text-center"><span
-                                                class="badge bg-danger">{{ $user->role_as == 0 ? 'Admin' : ($user->role_as == 1 ? 'Agent' : 'Q/A') }}</span>
+                                                class="badge bg-danger">{{ ($user->role_as == 0 ? 'Admin' : ($user->role_as == 1 ? 'Agent' : 'Q/A')) }}</span>
                                         </td>
                                         <td class="text-center">{{ $user->created_at->format('d/m/Y') }}</td>
                                         <td>

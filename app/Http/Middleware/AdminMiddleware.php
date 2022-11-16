@@ -22,10 +22,12 @@ class AdminMiddleware
                 return $next($request);
             }
             elseif(Auth::user()->role == '1'){
-                return redirect('/home');
+                // return redirect('/admin');
+                return $next($request);
             }
             elseif(Auth::user()->role == '2'){
-                return redirect('/home');
+                // return redirect('/admin');
+                return $next($request);
             }
         }else{
             return redirect('/login');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -30,10 +31,11 @@ Auth::routes([
   
 ]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Admin
 Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
   Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
   Route::resource('users', UserController::class);
+  Route::resource('tools', ToolsController::class);
 });
