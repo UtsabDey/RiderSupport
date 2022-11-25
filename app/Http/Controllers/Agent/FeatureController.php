@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
+use App\Models\RCR;
 use App\Models\SOP;
 use App\Models\Tool;
 use Illuminate\Http\Request;
@@ -31,15 +32,10 @@ class FeatureController extends Controller
         return view('Agent.Tools.index', $data);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function showRcr()
     {
-        //
+        $data['rcrs'] = RCR::all();
+        return view('Agent.Tools.index', $data);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RCRController;
 use App\Http\Controllers\Admin\SOPController;
 use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\UserController;
@@ -42,6 +43,10 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
   Route::resource('users', UserController::class);
   Route::resource('tools', ToolsController::class);
   Route::resource('sop', SOPController::class);
+  Route::resource('rcr', RCRController::class);
+
+
   Route::get('showTool', [FeatureController::class, 'showTool'])->name('showTool');
   Route::get('showSop', [FeatureController::class, 'showSop'])->name('showSop');
+  Route::get('showRcr', [FeatureController::class, 'showRcr'])->name('showRcr');
 });

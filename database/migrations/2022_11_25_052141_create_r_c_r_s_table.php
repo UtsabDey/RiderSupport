@@ -15,6 +15,8 @@ class CreateRCRSTable extends Migration
     {
         Schema::create('r_c_r_s', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('link')->nullable();
             $table->timestamps();
         });
     }
