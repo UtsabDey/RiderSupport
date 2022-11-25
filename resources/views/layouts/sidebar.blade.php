@@ -52,6 +52,12 @@
                         Tools
                     </a>
 
+                    {{-- SOP --}}
+                    <a class="nav-link {{ Route::is('sop.*') ? 'active' : '' }}" href="{{ route('sop.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-toolbox"></i></div>
+                        SOP
+                    </a>
+
                     {{-- Settings --}}
                     <a class="nav-link" href="">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></div>
@@ -80,14 +86,14 @@
                     </div>
 
                     {{-- Tools --}}
-                    <a class="nav-link {{ Route::is('tools.*') ? 'active' : '' }}" href="{{ route('tools.index') }}">
+                    <a class="nav-link {{ Route::is('showTool') ? 'active' : '' }}" href="{{ route('showTool') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-toolbox"></i></div>
                         Tools
                     </a>
 
                     {{-- SOP --}}
-                    <a class="nav-link" href="">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-link"></i></div>
+                    <a class="nav-link {{ Route::is('showSop') ? 'active' : '' }}" href="{{ route('showSop') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-toolbox"></i></div>
                         SOP
                     </a>
 
@@ -104,7 +110,8 @@
                     </a>
 
                     {{-- Users --}}
-                    <a class="nav-link {{ Route::is('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                    <a class="nav-link {{ Route::is('users.*') ? 'active' : '' }}"
+                        href="{{ route('users.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                         Users
                     </a>

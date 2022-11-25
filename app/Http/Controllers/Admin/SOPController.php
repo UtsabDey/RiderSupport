@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tool;
+use App\Models\SOP;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ToolsController extends Controller
+class SOPController extends Controller
 {
     public function __construct()
     {
@@ -16,8 +16,8 @@ class ToolsController extends Controller
 
     public function index()
     {
-        $data['tools'] = Tool::all();
-        return view('Admin.Tools.index', $data);
+        $data['sops'] = SOP::all();
+        return view('Admin.SOP.index', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class ToolsController extends Controller
      */
     public function create()
     {
-        return view('Admin.Tools.add');
+        return view('Admin.SOP.add');
     }
 
     /**
@@ -39,7 +39,7 @@ class ToolsController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'title' => 'required|string',
             'link' => 'nullable',
         ]);
 
@@ -47,14 +47,14 @@ class ToolsController extends Controller
             return back()->withErrors($validate)->withInput();
         }
 
-        $tool = new Tool();
-        $tool->name = $request->name;
-        $tool->link = $request->link;
-        $tool->save();
-        if ($tool) {
-            return redirect()->route('tools.index')->with('success', 'Tools Added Successfully!');
+        $sop = new SOP();
+        $sop->title = $request->title;
+        $sop->link = $request->link;
+        $sop->save();
+        if ($sop) {
+            return redirect()->route('sop.index')->with('success', 'SOP Link Added Successfully!');
         }
-        return redirect()->route('tools.index')->with('error', 'Failed to Create Tool!');
+        return redirect()->route('sop.index')->with('error', 'Failed to Create SOP Link!');
     }
 
     /**
@@ -76,8 +76,8 @@ class ToolsController extends Controller
      */
     public function edit($id)
     {
-        $data['tool'] = Tool::find($id);
-        return view('Admin.Tools.edit', $data);
+        $data['sop'] = SOP::find($id);
+        return view('Admin.SOP.edit', $data);
     }
 
     /**
@@ -90,7 +90,7 @@ class ToolsController extends Controller
     public function update(Request $request, $id)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required|string',
+            'title' => 'required|string',
             'link' => 'nullable',
         ]);
 
@@ -98,15 +98,15 @@ class ToolsController extends Controller
             return back()->withErrors($validate)->withInput();
         }
 
-        $tool = Tool::find($id);
-        $tool->name = $request->name;
-        $tool->link = $request->link;
+        $sop = SOP::find($id);
+        $sop->title = $request->title;
+        $sop->link = $request->link;
 
-        if ($tool->isDirty()) {
-            $tool->update();
-            return redirect()->route('tools.index')->with('success', 'Updated Successfully!');
+        if ($sop->isDirty()) {
+            $sop->update();
+            return redirect()->route('sop.index')->with('success', 'Updated Successfully!');
         }
-        return redirect()->route('tools.index')->with('error', 'Nothing Changed!');
+        return redirect()->route('sop.index')->with('error', 'Nothing Changed!');
     }
 
     /**
@@ -117,7 +117,7 @@ class ToolsController extends Controller
      */
     public function destroy($id)
     {
-        Tool::find($id)->delete();
+        SOP::find($id)->delete();
         return redirect()->back()->with('warning', 'Deleted Successfully');
     }
 }

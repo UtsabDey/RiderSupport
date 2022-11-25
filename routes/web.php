@@ -1,10 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SOPController;
 use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Agent\FeatureController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Ramsey\Uuid\FeatureSet;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,4 +41,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function(){
   Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
   Route::resource('users', UserController::class);
   Route::resource('tools', ToolsController::class);
+  Route::resource('sop', SOPController::class);
+  Route::get('showTool', [FeatureController::class, 'showTool'])->name('showTool');
+  Route::get('showSop', [FeatureController::class, 'showSop'])->name('showSop');
 });

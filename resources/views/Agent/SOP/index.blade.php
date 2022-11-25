@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'View Tools')
+@section('title', 'View SOP')
 
 @section('content')
     <div class="container-fluid px-4">
@@ -9,7 +9,7 @@
                 <div class="card shadow mt-4">
                     <div class="card-header">
                         <h4>
-                            View Tools
+                            View SOP
                         </h4>
                     </div>
                     <div class="card-body">
@@ -17,18 +17,18 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Sl no.</th>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">Title</th>
                                     <th scope="col">Link</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tools as $key => $tool)
+                                @foreach ($sops as $key => $sop)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
-                                        <td>{{ $tool->name }}</td>
+                                        <td>{{ $sop->title }}</td>
                                         <td>
-                                            <a href="{{ $tool->link }}" target="_blank" rel="noopener noreferrer">Go to
-                                                {{ $tool->name }}</a>
+                                            <a href="{{ $sop->link }}" target="_blank" rel="noopener noreferrer">Go to
+                                                {{ $sop->title }}</a>
                                         </td>
                                     </tr>
                                 @endforeach
