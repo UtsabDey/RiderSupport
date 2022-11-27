@@ -15,6 +15,8 @@ class CreatePerformancesTable extends Migration
     {
         Schema::create('performances', function (Blueprint $table) {
             $table->id();
+            $table->integer('A_id');
+            $table->integer('daily_report')->nullable();
             $table->timestamps();
         });
     }

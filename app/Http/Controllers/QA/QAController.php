@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\QA;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class QAController extends Controller

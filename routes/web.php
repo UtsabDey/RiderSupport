@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SOPController;
 use App\Http\Controllers\Admin\ToolsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Agent\FeatureController;
+use App\Http\Controllers\QA\PerformanceController;
 use App\Http\Controllers\QA\QAController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,7 @@ Route::prefix('admin')->middleware('auth', 'isAdmin')->group(function () {
     Route::resource('rcr', RCRController::class);
     Route::resource('notes', NoteController::class);
 
+    Route::get('getPerformance', [DashboardController::class, 'getPerformance'])->name('getPerformance');
 });
 
 //Agent
@@ -61,5 +63,6 @@ Route::prefix('agent')->middleware('auth', 'isAdmin')->group(function () {
 //QA
 Route::prefix('QA')->middleware('auth', 'isAdmin')->group(function () {
     Route::get('/', [QAController::class, 'index'])->name('QAdashboard');
+    Route::resource('performance', PerformanceController::class);
 
 });

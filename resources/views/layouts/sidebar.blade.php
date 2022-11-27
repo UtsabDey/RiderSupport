@@ -40,14 +40,22 @@
                         Notes
                     </a>
 
+                    {{-- Performance --}}
+                    <a class="nav-link {{ Route::is('getPerformance') ? 'active' : '' }}"
+                        href="{{ route('getPerformance') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard"></i></div>
+                        Performance
+                    </a>
+
                     {{-- Settings --}}
-                    <a class="nav-link" href="">
+                    {{-- <a class="nav-link" href="">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></div>
                         Settings
-                    </a>
+                    </a> --}}
                 @elseif (Auth::user()->role == '1')
                     {{-- Dashboard --}}
-                    <a class="nav-link {{ Route::is('Agentdashboard') ? 'active' : '' }}" href="{{ route('Agentdashboard') }}">
+                    <a class="nav-link {{ Route::is('Agentdashboard') ? 'active' : '' }}"
+                        href="{{ route('Agentdashboard') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
@@ -75,21 +83,17 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-message"></i></div>
                         Notes
                     </a>
-
-                    {{-- Settings --}}
-                    <a class="nav-link" href="">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></div>
-                        Settings
-                    </a>
                 @else
                     {{-- Dashboard --}}
-                    <a class="nav-link {{ Route::is('QAdashboard') ? 'active' : '' }}" href="{{ route('QAdashboard') }}">
+                    <a class="nav-link {{ Route::is('QAdashboard') ? 'active' : '' }}"
+                        href="{{ route('QAdashboard') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
 
                     {{-- Performance --}}
-                    <a class="nav-link {{ Route::is('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                    <a class="nav-link {{ Route::is('performance.*') ? 'active' : '' }}"
+                        href="{{ route('performance.index') }}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard"></i></div>
                         Performance
                     </a>
