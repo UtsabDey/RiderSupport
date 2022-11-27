@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\RCR;
+use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class RCRController extends Controller
+class NoteController extends Controller
 {
     public function __construct()
     {
         $this->middleware('isAdmin');
     }
-
+    
     public function index()
     {
-        $data['rcrs'] = RCR::all();
-        return view('Admin.RCR.index', $data);
+        $data['notes'] = Note::all();
+        return view('Admin.Notes.index', $data);
     }
 
     /**
@@ -27,7 +27,7 @@ class RCRController extends Controller
      */
     public function create()
     {
-        return view('Admin.RCR.add');
+        return view('Admin.Notes.add');
     }
 
     /**
@@ -39,22 +39,22 @@ class RCRController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'title' => 'required|string',
-            'link' => 'nullable',
+            'reason' => 'required|string',
+            'notes' => 'nullable',
         ]);
 
         if ($validate->fails()) {
             return back()->withErrors($validate)->withInput();
         }
 
-        $rcr = new RCR();
-        $rcr->title = $request->title;
-        $rcr->link = $request->link;
-        $rcr->save();
-        if ($rcr) {
-            return redirect()->route('rcr.index')->with('success', 'RCR Link Added Successfully!');
+        $note = new Note();
+        $note->reason = $request->reason;
+        $note->notes = $request->notes;
+        $note->save();
+        if ($note) {
+            return redirect()->route('notes.index')->with('success', 'Notes Added Successfully!');
         }
-        return redirect()->route('rcr.index')->with('error', 'Failed to Create RCR Link!');
+        return redirect()->route('notes.index')->with('error', 'Failed to Create Notes!');
     }
 
     /**
@@ -76,8 +76,8 @@ class RCRController extends Controller
      */
     public function edit($id)
     {
-        $data['rcr'] = RCR::find($id);
-        return view('Admin.RCR.edit', $data);
+        $data['note'] = Note::find($id);
+        return view('Admin.Notes.edit', $data);
     }
 
     /**
@@ -90,23 +90,23 @@ class RCRController extends Controller
     public function update(Request $request, $id)
     {
         $validate = Validator::make($request->all(), [
-            'title' => 'required|string',
-            'link' => 'nullable',
+            'reason' => 'required|string',
+            'notes' => 'nullable',
         ]);
 
         if ($validate->fails()) {
             return back()->withErrors($validate)->withInput();
         }
 
-        $rcr = RCR::find($id);
-        $rcr->title = $request->title;
-        $rcr->link = $request->link;
+        $note = Note::find($id);
+        $note->reason = $request->reason;
+        $note->notes = $request->notes;
 
-        if ($rcr->isDirty()) {
-            $rcr->update();
-            return redirect()->route('rcr.index')->with('success', 'Updated Successfully!');
+        if ($note->isDirty()) {
+            $note->update();
+            return redirect()->route('notes.index')->with('success', 'Updated Successfully!');
         }
-        return redirect()->route('rcr.index')->with('error', 'Nothing Changed!');
+        return redirect()->route('notes.index')->with('error', 'Nothing Changed!');
     }
 
     /**
@@ -117,7 +117,7 @@ class RCRController extends Controller
      */
     public function destroy($id)
     {
-        RCR::find($id)->delete();
+        Note::find($id)->delete();
         return redirect()->back()->with('warning', 'Deleted Successfully');
     }
 }

@@ -27,16 +27,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    //protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     public function authenticated()
     {
         if (Auth::user()->role == '0') { // 0 = Admin & 1 = Agent & 2 = Q/A
             return redirect('/admin')->with('success', 'Welcome to Rider Support Site');
-        } else if (Auth::user()->role_as == '1') {
-            return redirect('/admin')->with('success', 'Login Successfully');
-        }else if (Auth::user()->role_as == '2') {
-            return redirect('/admin')->with('success', 'Welcome to Rider Support Site');
+        } elseif (Auth::user()->role == '1') {
+            return redirect('/agent')->with('success', 'Welcome to Rider Support Site');
+        }elseif (Auth::user()->role == '2') {
+            return redirect('/QA')->with('success', 'Welcome to Rider Support Site');
         } else {
             return redirect('/login')->with('warning', 'Please Login First!');
         }

@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\QA;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class QAController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function __construct()
     {
         $this->middleware('isAdmin');
@@ -19,7 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('Admin.dashboard');
+        return view('QA.dashboard');
     }
 
     /**

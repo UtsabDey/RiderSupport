@@ -34,6 +34,12 @@
                         RCR
                     </a>
 
+                    {{-- Notes --}}
+                    <a class="nav-link {{ Route::is('notes.*') ? 'active' : '' }}" href="{{ route('notes.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-message"></i></div>
+                        Notes
+                    </a>
+
                     {{-- Settings --}}
                     <a class="nav-link" href="">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></div>
@@ -41,25 +47,10 @@
                     </a>
                 @elseif (Auth::user()->role == '1')
                     {{-- Dashboard --}}
-                    <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ Route::is('Agentdashboard') ? 'active' : '' }}" href="{{ route('Agentdashboard') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
-
-                    {{-- Category --}}
-                    <a class="nav-link" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts"
-                        aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Category
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                        data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="">Add Category</a>
-                            <a class="nav-link" href="">View Category</a>
-                        </nav>
-                    </div>
 
                     {{-- Tools --}}
                     <a class="nav-link {{ Route::is('showTool') ? 'active' : '' }}" href="{{ route('showTool') }}">
@@ -73,6 +64,18 @@
                         SOP
                     </a>
 
+                    {{-- RCR --}}
+                    <a class="nav-link {{ Route::is('showRcr') ? 'active' : '' }}" href="{{ route('showRcr') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-toolbox"></i></div>
+                        RCR
+                    </a>
+
+                    {{-- Notes --}}
+                    <a class="nav-link {{ Route::is('showNotes') ? 'active' : '' }}" href="{{ route('showNotes') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-message"></i></div>
+                        Notes
+                    </a>
+
                     {{-- Settings --}}
                     <a class="nav-link" href="">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user-gear"></i></div>
@@ -80,17 +83,15 @@
                     </a>
                 @else
                     {{-- Dashboard --}}
-                    <a class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}"
-                        href="{{ route('dashboard') }}">
+                    <a class="nav-link {{ Route::is('QAdashboard') ? 'active' : '' }}" href="{{ route('QAdashboard') }}">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Dashboard
                     </a>
 
-                    {{-- Users --}}
-                    <a class="nav-link {{ Route::is('users.*') ? 'active' : '' }}"
-                        href="{{ route('users.index') }}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
-                        Users
+                    {{-- Performance --}}
+                    <a class="nav-link {{ Route::is('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard"></i></div>
+                        Performance
                     </a>
                 @endif
 

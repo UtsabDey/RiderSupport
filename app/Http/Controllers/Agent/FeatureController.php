@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Http\Controllers\Controller;
+use App\Models\Note;
 use App\Models\RCR;
 use App\Models\SOP;
 use App\Models\Tool;
@@ -17,7 +18,7 @@ class FeatureController extends Controller
      */
     public function index()
     {
-        //
+        return view('Agent.dashboard');
     }
 
     public function showSop()
@@ -35,18 +36,13 @@ class FeatureController extends Controller
     public function showRcr()
     {
         $data['rcrs'] = RCR::all();
-        return view('Agent.Tools.index', $data);
+        return view('Agent.RCR.index', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function showNotes()
     {
-        //
+        $data['notes'] = Note::all();
+        return view('Agent.Notes.index', $data);
     }
 
     /**
